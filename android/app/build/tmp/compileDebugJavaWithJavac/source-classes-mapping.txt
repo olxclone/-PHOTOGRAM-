@@ -1,0 +1,14 @@
+com/chat/BuildConfig.java
+ com.chat.BuildConfig
+com/chat/MainApplication.java
+ com.chat.MainApplication
+ com.chat.MainApplication$1
+com/chat/MainActivity.java
+ com.chat.MainActivity
+com/facebook/react/PackageList.java
+ com.facebook.react.PackageList
+com/chat/ReactNativeFlipper.java
+ com.chat.ReactNativeFlipper
+ com.chat.ReactNativeFlipper$1
+ com.chat.ReactNativeFlipper$2
+ com.chat.ReactNativeFlipper$2$1

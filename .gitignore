@@ -1,0 +1,5 @@
+node_modules
+android/app/google-services.json
+android/app/releas.jks
+android/app/release.jks
+android/app/release/app-release.apk

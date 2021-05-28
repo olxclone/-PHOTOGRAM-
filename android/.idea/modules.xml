@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Chat.iml" filepath="$PROJECT_DIR$/.idea/modules/Chat.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/2105867807/Chat.@react-native-community_async-storage.iml" filepath="$PROJECT_DIR$/.idea/modules/2105867807/Chat.@react-native-community_async-storage.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Chat.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Chat.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/2105867807/Chat.react-native-community_async-storage.iml" filepath="$PROJECT_DIR$/.idea/modules/2105867807/Chat.react-native-community_async-storage.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/718199143/Chat.react-native-community_masked-view.iml" filepath="$PROJECT_DIR$/.idea/modules/718199143/Chat.react-native-community_masked-view.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-2011150838/Chat.react-native-document-picker.iml" filepath="$PROJECT_DIR$/.idea/modules/-2011150838/Chat.react-native-document-picker.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1740068803/Chat.react-native-firebase_analytics.iml" filepath="$PROJECT_DIR$/.idea/modules/1740068803/Chat.react-native-firebase_analytics.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/803411230/Chat.react-native-firebase_app.iml" filepath="$PROJECT_DIR$/.idea/modules/803411230/Chat.react-native-firebase_app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1610980341/Chat.react-native-firebase_auth.iml" filepath="$PROJECT_DIR$/.idea/modules/-1610980341/Chat.react-native-firebase_auth.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-2062623906/Chat.react-native-firebase_database.iml" filepath="$PROJECT_DIR$/.idea/modules/-2062623906/Chat.react-native-firebase_database.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/2022341544/Chat.react-native-firebase_firestore.iml" filepath="$PROJECT_DIR$/.idea/modules/2022341544/Chat.react-native-firebase_firestore.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1951427263/Chat.react-native-firebase_messaging.iml" filepath="$PROJECT_DIR$/.idea/modules/-1951427263/Chat.react-native-firebase_messaging.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/2018594040/Chat.react-native-firebase_storage.iml" filepath="$PROJECT_DIR$/.idea/modules/2018594040/Chat.react-native-firebase_storage.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-915431088/Chat.react-native-gesture-handler.iml" filepath="$PROJECT_DIR$/.idea/modules/-915431088/Chat.react-native-gesture-handler.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-800192146/Chat.react-native-image-crop-picker.iml" filepath="$PROJECT_DIR$/.idea/modules/-800192146/Chat.react-native-image-crop-picker.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1235487795/Chat.react-native-push-notification.iml" filepath="$PROJECT_DIR$/.idea/modules/1235487795/Chat.react-native-push-notification.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1390388665/Chat.react-native-safe-area-context.iml" filepath="$PROJECT_DIR$/.idea/modules/1390388665/Chat.react-native-safe-area-context.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/784541969/Chat.react-native-screens.iml" filepath="$PROJECT_DIR$/.idea/modules/784541969/Chat.react-native-screens.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1677705081/Chat.react-native-splash-screen.iml" filepath="$PROJECT_DIR$/.idea/modules/-1677705081/Chat.react-native-splash-screen.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-414025594/Chat.react-native-vector-icons.iml" filepath="$PROJECT_DIR$/.idea/modules/-414025594/Chat.react-native-vector-icons.iml" />
+    </modules>
+  </component>
+</project>
