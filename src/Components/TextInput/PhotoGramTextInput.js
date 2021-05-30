@@ -6,15 +6,19 @@ export function PhotogramTextInput({
   placeholder,
   extraStyles,
   secureTextEntry,
+  placeholderTextColor,
   padding,
   fontSize,
-  fontFamily
+  fontFamily,
+  marginHorizontal,
+  color
 }) {
   const styles = StyleSheet.create({
     textInput: {
       backgroundColor: '#F6F6F6',
-      marginHorizontal: 18,
+      marginHorizontal: marginHorizontal || 18,
       fontSize,
+      color:color || '#000',
       padding: padding || 18,
       fontFamily: fontFamily || 'Roboto-Bold',
       ...extraStyles,
@@ -24,6 +28,7 @@ export function PhotogramTextInput({
   return (
     <View>
       <TextInput
+      placeholderTextColor={placeholderTextColor}
         placeholder={placeholder}
         onChangeText={onChangeText}
         style={styles.textInput}

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   View,
   Text,
@@ -14,11 +14,11 @@ import {
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import PostCard from '../../Components/PostCard/PostCard';
-import {width} from '../../Utils/constants/styles';
-import {PhotogramText} from '../../Components/Text/PhotoGramText';
-import {PhotoGramButton} from '../../Components/Buttons/PhotoGramButton';
+import { width } from '../../Utils/constants/styles';
+import { PhotogramText } from '../../Components/Text/PhotoGramText';
+import { PhotoGramButton } from '../../Components/Buttons/PhotoGramButton';
 
-function Profile({navigation, route}) {
+function Profile({ navigation, route }) {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [following, setFollowing] = useState();
@@ -46,7 +46,7 @@ function Profile({navigation, route}) {
           onPress: () => deletePost(postId),
         },
       ],
-      {cancelable: false},
+      { cancelable: false },
     );
   };
 
@@ -67,7 +67,7 @@ function Profile({navigation, route}) {
       .then((documentSnapshot) => {
         _isMounted.current = true;
         if (documentSnapshot.exists) {
-          const {image} = documentSnapshot.data();
+          const { image } = documentSnapshot.data();
 
           if (image != null) {
             const storageRef = storage().refFromURL(image);
@@ -159,7 +159,7 @@ function Profile({navigation, route}) {
         .get()
         .then((querySnapshot) => {
           querySnapshot.forEach((doc) => {
-            const {uid, displayName, postText, image, createdAt, userImage} =
+            const { uid, displayName, postText, image, createdAt, userImage } =
               doc.data();
             list.push({
               uid,
@@ -182,7 +182,7 @@ function Profile({navigation, route}) {
   };
 
   const getUser = async () => {
-    let getUsers = await firestore()
+    await firestore()
       .collection('users')
       .doc(route.params ? route.params.uid : auth().currentUser.uid)
       .onSnapshot((documentSnapshot) => {
@@ -193,6 +193,7 @@ function Profile({navigation, route}) {
   };
 
   useEffect(() => {
+    console.log(route.params)
     let unmounted = false;
     if (!unmounted) {
       fetchUsersFollowing();
@@ -215,14 +216,14 @@ function Profile({navigation, route}) {
   }, [navigation, loading]);
 
   return (
-    <SafeAreaView style={{flex: 1}}>
-      <View style={{flexDirection: 'row'}}>
+    <SafeAreaView style={{ flex: 1 }}>
+      <View style={{ flexDirection: 'row' }}>
         <Image
           style={styles.userImg}
           source={{
             uri: userData
               ? userData.userImg ||
-                'https://www.pngkey.com/png/detail/950-9501315_katie-notopoulos-katienotopoulos-i-write-about-tech-user.png'
+              'https://www.pngkey.com/png/detail/950-9501315_katie-notopoulos-katienotopoulos-i-write-about-tech-user.png'
               : 'https://www.pngkey.com/png/detail/950-9501315_katie-notopoulos-katienotopoulos-i-write-about-tech-user.png',
           }}
         />
@@ -253,9 +254,11 @@ function Profile({navigation, route}) {
 
       {route.params ? (
         route.params.uid === auth().currentUser.uid ? (
-          <PhotoGramButton title={'EDIT'} onPress={() => navigation.navigate('EditScreen')} />
+          <PhotoGramButton backgroundColor={'#fff'} color={'#000'} fontWeight={'h1'} title={'EDIT'} padding={10} extraStyles={{
+            marginHorizontal: 12
+          }} onPress={() => navigation.navigate('EditScreen')} />
         ) : (
-          <PhotoGramButton title={'Chat'}  padding={10} onPress={() => navigation.navigate('ChatRoom' ,chatUser)} />
+          <PhotoGramButton title={'Chat'} padding={10} onPress={() => navigation.navigate('ChatRoom', chatUser)} />
         )
       ) : (
         <>
@@ -266,10 +269,11 @@ function Profile({navigation, route}) {
             backgroundColor={'#fff'}
             fontWeight={'h1'}
             color={'#000'}
-            extraStyles={{width: width - 20, alignSelf: 'center'}}
+            extraStyles={{ width: width - 20, alignSelf: 'center' }}
           />
           <PhotoGramButton
             title={'LOGOUT'}
+            onPress={() => auth().signOut()}
             padding={10}
             extraStyles={{
               marginVertical: 24 - 8,
@@ -343,10 +347,11 @@ function Profile({navigation, route}) {
       <ScrollView>
         <Animated.FlatList
           data={posts}
+          keyExtractor={({ item }) => item}
           scrollEventThrottle={16}
           showsVerticalScrollIndicator={false}
           showsHorizontalScrollIndicator={false}
-          renderItem={({item, index}) => {
+          renderItem={({ item, index }) => {
             const inputRange = [
               -1,
               0,
