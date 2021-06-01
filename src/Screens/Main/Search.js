@@ -7,13 +7,11 @@ import Ionicons from "react-native-vector-icons/Ionicons"
 import { Image } from 'react-native';
 import { PhotogramText } from '../../Components/Text/PhotoGramText';
 import { TouchableOpacity } from 'react-native';
+import { ScrollView } from 'react-native';
 
 export default function Search({ navigation }) {
   const [userData, setUserData] = useState([]);
 
-  useEffect(() => {
-    getAllUsers()
-  })
 
   let getAllUsers = async (search) => {
     firestore().collection('users')
@@ -92,8 +90,12 @@ export default function Search({ navigation }) {
 
       <FlatList
         data={userData}
+        key={userData.uid}
         renderItem={({ item }) => {
           return (
+            <ScrollView>
+
+
             <TouchableOpacity activeOpacity={3} onPress={() => navigation.navigate('HomeProfile', item)} style={{ flexDirection: 'row', width: width - 124, padding: 10, backgroundColor: '#fff',borderRadius:124, width : width -24, marginVertical: 14 }}>
               <Image
                 source={{ uri: item.userImg ? item.userImg : 'https://www.pngkey.com/png/detail/950-9501315_katie-notopoulos-katienotopoulos-i-write-about-tech-user.png' }}
@@ -115,6 +117,8 @@ export default function Search({ navigation }) {
                 />
               </View>
             </TouchableOpacity>
+            </ScrollView>
+          
           )
         }}
       />

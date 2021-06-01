@@ -19,6 +19,7 @@ MERGED from [com.facebook.flipper:flipper-fresco-plugin:0.54.0] /home/madan/.gra
 MERGED from [:react-native-vector-icons] /home/madan/Desktop/Documents/Madan/Chat/node_modules/react-native-vector-icons/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [:react-native-community_async-storage] /home/madan/Desktop/Documents/Madan/Chat/node_modules/@react-native-community/async-storage/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [:react-native-community_masked-view] /home/madan/Desktop/Documents/Madan/Chat/node_modules/@react-native-community/masked-view/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
+MERGED from [:react-native-community_viewpager] /home/madan/Desktop/Documents/Madan/Chat/node_modules/@react-native-community/viewpager/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [:react-native-firebase_analytics] /home/madan/Desktop/Documents/Madan/Chat/node_modules/@react-native-firebase/analytics/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-19:12
 MERGED from [:react-native-firebase_auth] /home/madan/Desktop/Documents/Madan/Chat/node_modules/@react-native-firebase/auth/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-13:12
 MERGED from [:react-native-firebase_database] /home/madan/Desktop/Documents/Madan/Chat/node_modules/@react-native-firebase/database/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-13:12
@@ -32,12 +33,12 @@ MERGED from [:react-native-image-crop-picker] /home/madan/Desktop/Documents/Mada
 MERGED from [:react-native-push-notification] /home/madan/Desktop/Documents/Madan/Chat/node_modules/react-native-push-notification/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [:react-native-safe-area-context] /home/madan/Desktop/Documents/Madan/Chat/node_modules/react-native-safe-area-context/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [:react-native-screens] /home/madan/Desktop/Documents/Madan/Chat/node_modules/react-native-screens/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
-MERGED from [:react-native-splash-screen] /home/madan/Desktop/Documents/Madan/Chat/node_modules/react-native-splash-screen/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-12:12
 MERGED from [com.facebook.react:react-native:0.64.1] /home/madan/.gradle/caches/transforms-2/files-2.1/07dcec0907e63508c63bee5eb9a49046/jetified-react-native-0.64.1/AndroidManifest.xml:2:1-13:12
 MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.1.0] /home/madan/.gradle/caches/transforms-2/files-2.1/0b298ee84655a199a8d6dbbca251b522/swiperefreshlayout-1.1.0/AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.firebase:firebase-firestore:22.1.2] /home/madan/.gradle/caches/transforms-2/files-2.1/c81fc9fff5647fc2a4bb59ab9d106563/jetified-firebase-firestore-22.1.2/AndroidManifest.xml:2:1-26:12
 MERGED from [com.google.firebase:firebase-messaging:21.1.0] /home/madan/.gradle/caches/transforms-2/files-2.1/230baa4dfa4be01a1b82a9db7141a554/jetified-firebase-messaging-21.1.0/AndroidManifest.xml:17:1-58:12
 MERGED from [org.webkit:android-jsc:r245459] /home/madan/.gradle/caches/transforms-2/files-2.1/1c36c7f83afa90b1fd989daf05f98619/jetified-android-jsc-r245459/AndroidManifest.xml:2:1-11:12
+MERGED from [:react-native-reanimated] /home/madan/Desktop/Documents/Madan/Chat/node_modules/react-native-reanimated/android/build/.transforms/1dcdde0ef32c551ab96de8f13b42e92d/jetified-react-native-reanimated-64-jsc/AndroidManifest.xml:2:1-11:12
 MERGED from [com.facebook.fresco:flipper:2.2.0] /home/madan/.gradle/caches/transforms-2/files-2.1/4bce7ac21e70bb69d5e7a7a313c83dcd/jetified-flipper-2.2.0/AndroidManifest.xml:2:1-9:12
 MERGED from [com.facebook.fresco:stetho:2.2.0] /home/madan/.gradle/caches/transforms-2/files-2.1/eb69f592f2a9b7ee10dd3e07a5bdd390/jetified-stetho-2.2.0/AndroidManifest.xml:2:1-9:12
 MERGED from [com.facebook.fresco:fresco:2.2.0] /home/madan/.gradle/caches/transforms-2/files-2.1/13f9252eb9351d60468694f3c414e3fc/jetified-fresco-2.2.0/AndroidManifest.xml:2:1-9:12
@@ -60,6 +61,7 @@ MERGED from [androidx.appcompat:appcompat:1.1.0] /home/madan/.gradle/caches/tran
 MERGED from [com.google.firebase:firebase-datatransport:17.0.10] /home/madan/.gradle/caches/transforms-2/files-2.1/8baebfbb14444c2c18248b1f74c45c44/jetified-firebase-datatransport-17.0.10/AndroidManifest.xml:15:1-34:12
 MERGED from [com.google.android.datatransport:transport-backend-cct:2.3.3] /home/madan/.gradle/caches/transforms-2/files-2.1/2f3708527cba0fe4d8a40dcbba2c0ffe/jetified-transport-backend-cct-2.3.3/AndroidManifest.xml:15:1-38:12
 MERGED from [com.google.android.datatransport:transport-runtime:2.2.5] /home/madan/.gradle/caches/transforms-2/files-2.1/5afd965a354d83892b36312b5b8bd8b6/jetified-transport-runtime-2.2.5/AndroidManifest.xml:15:1-41:12
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] /home/madan/.gradle/caches/transforms-2/files-2.1/c79e92ab6bbc8e312d3475af5fb56948/jetified-viewpager2-1.0.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.browser:browser:1.3.0] /home/madan/.gradle/caches/transforms-2/files-2.1/db472a594a2395a578ee87e6528160de/browser-1.3.0/AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.android.gms:play-services-auth:19.0.0] /home/madan/.gradle/caches/transforms-2/files-2.1/81d16a51067be810b5766ebd2915ae15/jetified-play-services-auth-19.0.0/AndroidManifest.xml:17:1-40:12
 MERGED from [com.google.firebase:firebase-auth:20.0.3] /home/madan/.gradle/caches/transforms-2/files-2.1/f016a81ccf143f58909121486e676685/jetified-firebase-auth-20.0.3/AndroidManifest.xml:17:1-83:12
@@ -89,16 +91,15 @@ MERGED from [com.google.android.gms:play-services-ads-identifier:17.0.0] /home/m
 MERGED from [com.google.android.gms:play-services-measurement-sdk-api:18.0.2] /home/madan/.gradle/caches/transforms-2/files-2.1/9142747e4b586d1ee80727b5ceeea6de/jetified-play-services-measurement-sdk-api-18.0.2/AndroidManifest.xml:17:1-27:12
 MERGED from [com.google.android.gms:play-services-measurement-base:18.0.2] /home/madan/.gradle/caches/transforms-2/files-2.1/446f4a4f2579221661b7b3ba02ff3264/jetified-play-services-measurement-base-18.0.2/AndroidManifest.xml:2:1-9:12
 MERGED from [com.google.android.gms:play-services-basement:17.1.1] /home/madan/.gradle/caches/transforms-2/files-2.1/0585ec4af778e7e48a85d94a527a553b/jetified-play-services-basement-17.1.1/AndroidManifest.xml:17:1-28:12
-MERGED from [androidx.viewpager2:viewpager2:1.0.0] /home/madan/.gradle/caches/transforms-2/files-2.1/c79e92ab6bbc8e312d3475af5fb56948/jetified-viewpager2-1.0.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.fragment:fragment:1.2.1] /home/madan/.gradle/caches/transforms-2/files-2.1/861ba28180f05a254cbf852b5957ef6a/fragment-1.2.1/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /home/madan/.gradle/caches/transforms-2/files-2.1/ae19c0eeae9a8ab95ee56c661c1b8602/coordinatorlayout-1.1.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.appcompat:appcompat-resources:1.1.0] /home/madan/.gradle/caches/transforms-2/files-2.1/a932ac483024590bf8a6782a6fbc1d08/jetified-appcompat-resources-1.1.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /home/madan/.gradle/caches/transforms-2/files-2.1/dbf9e41cd93397366ebb50e6acddbdbb/drawerlayout-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] /home/madan/.gradle/caches/transforms-2/files-2.1/46bf63de64a4bba61c59b20a843b4a09/recyclerview-1.1.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /home/madan/.gradle/caches/transforms-2/files-2.1/d8aef8d8d84e4cb820b244e1f7fee289/legacy-support-core-utils-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.loader:loader:1.0.0] /home/madan/.gradle/caches/transforms-2/files-2.1/81fa8c3cdb48ca3fd10399c1179d1a39/loader-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.viewpager:viewpager:1.0.0] /home/madan/.gradle/caches/transforms-2/files-2.1/72d64b2e57dd07480cca5614b2a32f24/viewpager-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.activity:activity:1.1.0] /home/madan/.gradle/caches/transforms-2/files-2.1/13d0e893cd4e996f31bc49e40ce6d819/jetified-activity-1.1.0/AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.recyclerview:recyclerview:1.1.0] /home/madan/.gradle/caches/transforms-2/files-2.1/46bf63de64a4bba61c59b20a843b4a09/recyclerview-1.1.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.customview:customview:1.0.0] /home/madan/.gradle/caches/transforms-2/files-2.1/045ef1789a87dfb601f3c4dd35ae54a9/customview-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.transition:transition:1.2.0] /home/madan/.gradle/caches/transforms-2/files-2.1/997b53b41d637254c7e32bba13342229/transition-1.2.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /home/madan/.gradle/caches/transforms-2/files-2.1/cb584a5baaf7af81865818ad088705b8/vectordrawable-animated-1.1.0/AndroidManifest.xml:17:1-24:12
@@ -226,8 +227,6 @@ MERGED from [:react-native-firebase_messaging] /home/madan/Desktop/Documents/Mad
 MERGED from [:react-native-firebase_messaging] /home/madan/Desktop/Documents/Madan/Chat/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:13:5-41:19
 MERGED from [:react-native-image-crop-picker] /home/madan/Desktop/Documents/Madan/Chat/node_modules/react-native-image-crop-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:17:5-31:19
 MERGED from [:react-native-image-crop-picker] /home/madan/Desktop/Documents/Madan/Chat/node_modules/react-native-image-crop-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:17:5-31:19
-MERGED from [:react-native-splash-screen] /home/madan/Desktop/Documents/Madan/Chat/node_modules/react-native-splash-screen/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:9:5-10:19
-MERGED from [:react-native-splash-screen] /home/madan/Desktop/Documents/Madan/Chat/node_modules/react-native-splash-screen/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:9:5-10:19
 MERGED from [com.facebook.react:react-native:0.64.1] /home/madan/.gradle/caches/transforms-2/files-2.1/07dcec0907e63508c63bee5eb9a49046/jetified-react-native-0.64.1/AndroidManifest.xml:11:5-20
 MERGED from [com.facebook.react:react-native:0.64.1] /home/madan/.gradle/caches/transforms-2/files-2.1/07dcec0907e63508c63bee5eb9a49046/jetified-react-native-0.64.1/AndroidManifest.xml:11:5-20
 MERGED from [com.google.firebase:firebase-firestore:22.1.2] /home/madan/.gradle/caches/transforms-2/files-2.1/c81fc9fff5647fc2a4bb59ab9d106563/jetified-firebase-firestore-22.1.2/AndroidManifest.xml:16:5-24:19
@@ -422,6 +421,8 @@ MERGED from [:react-native-community_async-storage] /home/madan/Desktop/Document
 MERGED from [:react-native-community_async-storage] /home/madan/Desktop/Documents/Madan/Chat/node_modules/@react-native-community/async-storage/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-community_masked-view] /home/madan/Desktop/Documents/Madan/Chat/node_modules/@react-native-community/masked-view/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-community_masked-view] /home/madan/Desktop/Documents/Madan/Chat/node_modules/@react-native-community/masked-view/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:react-native-community_viewpager] /home/madan/Desktop/Documents/Madan/Chat/node_modules/@react-native-community/viewpager/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:react-native-community_viewpager] /home/madan/Desktop/Documents/Madan/Chat/node_modules/@react-native-community/viewpager/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-firebase_analytics] /home/madan/Desktop/Documents/Madan/Chat/node_modules/@react-native-firebase/analytics/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-firebase_analytics] /home/madan/Desktop/Documents/Madan/Chat/node_modules/@react-native-firebase/analytics/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-firebase_auth] /home/madan/Desktop/Documents/Madan/Chat/node_modules/@react-native-firebase/auth/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
@@ -448,8 +449,6 @@ MERGED from [:react-native-safe-area-context] /home/madan/Desktop/Documents/Mada
 MERGED from [:react-native-safe-area-context] /home/madan/Desktop/Documents/Madan/Chat/node_modules/react-native-safe-area-context/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-screens] /home/madan/Desktop/Documents/Madan/Chat/node_modules/react-native-screens/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-screens] /home/madan/Desktop/Documents/Madan/Chat/node_modules/react-native-screens/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
-MERGED from [:react-native-splash-screen] /home/madan/Desktop/Documents/Madan/Chat/node_modules/react-native-splash-screen/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
-MERGED from [:react-native-splash-screen] /home/madan/Desktop/Documents/Madan/Chat/node_modules/react-native-splash-screen/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [com.facebook.react:react-native:0.64.1] /home/madan/.gradle/caches/transforms-2/files-2.1/07dcec0907e63508c63bee5eb9a49046/jetified-react-native-0.64.1/AndroidManifest.xml:7:5-9:41
 MERGED from [com.facebook.react:react-native:0.64.1] /home/madan/.gradle/caches/transforms-2/files-2.1/07dcec0907e63508c63bee5eb9a49046/jetified-react-native-0.64.1/AndroidManifest.xml:7:5-9:41
 MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.1.0] /home/madan/.gradle/caches/transforms-2/files-2.1/0b298ee84655a199a8d6dbbca251b522/swiperefreshlayout-1.1.0/AndroidManifest.xml:20:5-22:41
@@ -460,6 +459,8 @@ MERGED from [com.google.firebase:firebase-messaging:21.1.0] /home/madan/.gradle/
 MERGED from [com.google.firebase:firebase-messaging:21.1.0] /home/madan/.gradle/caches/transforms-2/files-2.1/230baa4dfa4be01a1b82a9db7141a554/jetified-firebase-messaging-21.1.0/AndroidManifest.xml:20:5-44
 MERGED from [org.webkit:android-jsc:r245459] /home/madan/.gradle/caches/transforms-2/files-2.1/1c36c7f83afa90b1fd989daf05f98619/jetified-android-jsc-r245459/AndroidManifest.xml:7:5-9:41
 MERGED from [org.webkit:android-jsc:r245459] /home/madan/.gradle/caches/transforms-2/files-2.1/1c36c7f83afa90b1fd989daf05f98619/jetified-android-jsc-r245459/AndroidManifest.xml:7:5-9:41
+MERGED from [:react-native-reanimated] /home/madan/Desktop/Documents/Madan/Chat/node_modules/react-native-reanimated/android/build/.transforms/1dcdde0ef32c551ab96de8f13b42e92d/jetified-react-native-reanimated-64-jsc/AndroidManifest.xml:7:5-9:41
+MERGED from [:react-native-reanimated] /home/madan/Desktop/Documents/Madan/Chat/node_modules/react-native-reanimated/android/build/.transforms/1dcdde0ef32c551ab96de8f13b42e92d/jetified-react-native-reanimated-64-jsc/AndroidManifest.xml:7:5-9:41
 MERGED from [com.facebook.fresco:flipper:2.2.0] /home/madan/.gradle/caches/transforms-2/files-2.1/4bce7ac21e70bb69d5e7a7a313c83dcd/jetified-flipper-2.2.0/AndroidManifest.xml:5:5-7:41
 MERGED from [com.facebook.fresco:flipper:2.2.0] /home/madan/.gradle/caches/transforms-2/files-2.1/4bce7ac21e70bb69d5e7a7a313c83dcd/jetified-flipper-2.2.0/AndroidManifest.xml:5:5-7:41
 MERGED from [com.facebook.fresco:stetho:2.2.0] /home/madan/.gradle/caches/transforms-2/files-2.1/eb69f592f2a9b7ee10dd3e07a5bdd390/jetified-stetho-2.2.0/AndroidManifest.xml:5:5-7:41
@@ -504,6 +505,8 @@ MERGED from [com.google.android.datatransport:transport-backend-cct:2.3.3] /home
 MERGED from [com.google.android.datatransport:transport-backend-cct:2.3.3] /home/madan/.gradle/caches/transforms-2/files-2.1/2f3708527cba0fe4d8a40dcbba2c0ffe/jetified-transport-backend-cct-2.3.3/AndroidManifest.xml:19:5-21:41
 MERGED from [com.google.android.datatransport:transport-runtime:2.2.5] /home/madan/.gradle/caches/transforms-2/files-2.1/5afd965a354d83892b36312b5b8bd8b6/jetified-transport-runtime-2.2.5/AndroidManifest.xml:18:5-20:41
 MERGED from [com.google.android.datatransport:transport-runtime:2.2.5] /home/madan/.gradle/caches/transforms-2/files-2.1/5afd965a354d83892b36312b5b8bd8b6/jetified-transport-runtime-2.2.5/AndroidManifest.xml:18:5-20:41
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] /home/madan/.gradle/caches/transforms-2/files-2.1/c79e92ab6bbc8e312d3475af5fb56948/jetified-viewpager2-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] /home/madan/.gradle/caches/transforms-2/files-2.1/c79e92ab6bbc8e312d3475af5fb56948/jetified-viewpager2-1.0.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.browser:browser:1.3.0] /home/madan/.gradle/caches/transforms-2/files-2.1/db472a594a2395a578ee87e6528160de/browser-1.3.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.browser:browser:1.3.0] /home/madan/.gradle/caches/transforms-2/files-2.1/db472a594a2395a578ee87e6528160de/browser-1.3.0/AndroidManifest.xml:20:5-22:41
 MERGED from [com.google.android.gms:play-services-auth:19.0.0] /home/madan/.gradle/caches/transforms-2/files-2.1/81d16a51067be810b5766ebd2915ae15/jetified-play-services-auth-19.0.0/AndroidManifest.xml:20:5-44
@@ -562,8 +565,6 @@ MERGED from [com.google.android.gms:play-services-measurement-base:18.0.2] /home
 MERGED from [com.google.android.gms:play-services-measurement-base:18.0.2] /home/madan/.gradle/caches/transforms-2/files-2.1/446f4a4f2579221661b7b3ba02ff3264/jetified-play-services-measurement-base-18.0.2/AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-basement:17.1.1] /home/madan/.gradle/caches/transforms-2/files-2.1/0585ec4af778e7e48a85d94a527a553b/jetified-play-services-basement-17.1.1/AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-basement:17.1.1] /home/madan/.gradle/caches/transforms-2/files-2.1/0585ec4af778e7e48a85d94a527a553b/jetified-play-services-basement-17.1.1/AndroidManifest.xml:20:5-44
-MERGED from [androidx.viewpager2:viewpager2:1.0.0] /home/madan/.gradle/caches/transforms-2/files-2.1/c79e92ab6bbc8e312d3475af5fb56948/jetified-viewpager2-1.0.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.viewpager2:viewpager2:1.0.0] /home/madan/.gradle/caches/transforms-2/files-2.1/c79e92ab6bbc8e312d3475af5fb56948/jetified-viewpager2-1.0.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.fragment:fragment:1.2.1] /home/madan/.gradle/caches/transforms-2/files-2.1/861ba28180f05a254cbf852b5957ef6a/fragment-1.2.1/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.fragment:fragment:1.2.1] /home/madan/.gradle/caches/transforms-2/files-2.1/861ba28180f05a254cbf852b5957ef6a/fragment-1.2.1/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /home/madan/.gradle/caches/transforms-2/files-2.1/ae19c0eeae9a8ab95ee56c661c1b8602/coordinatorlayout-1.1.0/AndroidManifest.xml:20:5-22:41
@@ -572,6 +573,8 @@ MERGED from [androidx.appcompat:appcompat-resources:1.1.0] /home/madan/.gradle/c
 MERGED from [androidx.appcompat:appcompat-resources:1.1.0] /home/madan/.gradle/caches/transforms-2/files-2.1/a932ac483024590bf8a6782a6fbc1d08/jetified-appcompat-resources-1.1.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /home/madan/.gradle/caches/transforms-2/files-2.1/dbf9e41cd93397366ebb50e6acddbdbb/drawerlayout-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /home/madan/.gradle/caches/transforms-2/files-2.1/dbf9e41cd93397366ebb50e6acddbdbb/drawerlayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] /home/madan/.gradle/caches/transforms-2/files-2.1/46bf63de64a4bba61c59b20a843b4a09/recyclerview-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] /home/madan/.gradle/caches/transforms-2/files-2.1/46bf63de64a4bba61c59b20a843b4a09/recyclerview-1.1.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /home/madan/.gradle/caches/transforms-2/files-2.1/d8aef8d8d84e4cb820b244e1f7fee289/legacy-support-core-utils-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /home/madan/.gradle/caches/transforms-2/files-2.1/d8aef8d8d84e4cb820b244e1f7fee289/legacy-support-core-utils-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.loader:loader:1.0.0] /home/madan/.gradle/caches/transforms-2/files-2.1/81fa8c3cdb48ca3fd10399c1179d1a39/loader-1.0.0/AndroidManifest.xml:20:5-44
@@ -580,8 +583,6 @@ MERGED from [androidx.viewpager:viewpager:1.0.0] /home/madan/.gradle/caches/tran
 MERGED from [androidx.viewpager:viewpager:1.0.0] /home/madan/.gradle/caches/transforms-2/files-2.1/72d64b2e57dd07480cca5614b2a32f24/viewpager-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.activity:activity:1.1.0] /home/madan/.gradle/caches/transforms-2/files-2.1/13d0e893cd4e996f31bc49e40ce6d819/jetified-activity-1.1.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.activity:activity:1.1.0] /home/madan/.gradle/caches/transforms-2/files-2.1/13d0e893cd4e996f31bc49e40ce6d819/jetified-activity-1.1.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.recyclerview:recyclerview:1.1.0] /home/madan/.gradle/caches/transforms-2/files-2.1/46bf63de64a4bba61c59b20a843b4a09/recyclerview-1.1.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.recyclerview:recyclerview:1.1.0] /home/madan/.gradle/caches/transforms-2/files-2.1/46bf63de64a4bba61c59b20a843b4a09/recyclerview-1.1.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.customview:customview:1.0.0] /home/madan/.gradle/caches/transforms-2/files-2.1/045ef1789a87dfb601f3c4dd35ae54a9/customview-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.customview:customview:1.0.0] /home/madan/.gradle/caches/transforms-2/files-2.1/045ef1789a87dfb601f3c4dd35ae54a9/customview-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.transition:transition:1.2.0] /home/madan/.gradle/caches/transforms-2/files-2.1/997b53b41d637254c7e32bba13342229/transition-1.2.0/AndroidManifest.xml:20:5-22:41

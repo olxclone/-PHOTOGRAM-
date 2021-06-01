@@ -9,7 +9,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import Entypo from 'react-native-vector-icons/Entypo';
 import firestore from '@react-native-firebase/firestore';
-import { TouchableOpacity, View, LogBox, Text, Image } from 'react-native';
+import { TouchableOpacity, View, LogBox, Text, Image, ViewPagerAndroid } from 'react-native';
 import messaging from '@react-native-firebase/messaging';
 import AsyncStorage from '@react-native-community/async-storage';
 import PushNotifications from 'react-native-push-notification';
@@ -28,6 +28,7 @@ import Following from './src/Screens/Profile/Following';
 import Profile from './src/Screens/Profile/Profile';
 import EditProfile from './src/Screens/Profile/EditProfile';
 import Notifications from './src/Screens/Profile/Notifications';
+import ImageDetails from './src/Screens/Profile/ImageDetails';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -254,6 +255,7 @@ const App = ({ navigation }) => {
           component={chatRoom}
         />
         <Stack.Screen component={Following} name="Following" />
+        <Stack.Screen component={ImageDetails} name="ImageDetails" />
       </Stack.Navigator>
     </NavigationContainer>
   );

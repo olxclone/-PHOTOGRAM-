@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   View,
   Text,
@@ -10,21 +10,26 @@ import {
   Animated,
   SafeAreaView,
   Alert,
+  Button,
 } from 'react-native';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import PostCard from '../../Components/PostCard/PostCard';
-import { width } from '../../Utils/constants/styles';
-import { PhotogramText } from '../../Components/Text/PhotoGramText';
-import { PhotoGramButton } from '../../Components/Buttons/PhotoGramButton';
+import {height, padding, width} from '../../Utils/constants/styles';
+import {PhotogramText} from '../../Components/Text/PhotoGramText';
+import {PhotoGramButton} from '../../Components/Buttons/PhotoGramButton';
+import {Tab} from '../../Components/customTab/Tab';
+import {Transitioning, Transition} from 'react-native-reanimated';
 
-function Profile({ navigation, route }) {
+function Profile({navigation, route}) {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [isSelected, setIsSelected] = useState(0);
   const [following, setFollowing] = useState();
   const [userData, setUserData] = useState(null);
+  const [item, setItem] = useState();
+  const [currentTab, setCurrentTab] = useState(0);
   const [chatUser, setChatUser] = useState();
-  const [params, setParams] = useState();
   const [followers, setFollowers] = useState();
   const [followersId, setFollowersId] = useState([]);
   const _isMounted = React.useRef(true);
@@ -46,7 +51,7 @@ function Profile({ navigation, route }) {
           onPress: () => deletePost(postId),
         },
       ],
-      { cancelable: false },
+      {cancelable: false},
     );
   };
 
@@ -67,7 +72,7 @@ function Profile({ navigation, route }) {
       .then((documentSnapshot) => {
         _isMounted.current = true;
         if (documentSnapshot.exists) {
-          const { image } = documentSnapshot.data();
+          const {image} = documentSnapshot.data();
 
           if (image != null) {
             const storageRef = storage().refFromURL(image);
@@ -159,10 +164,11 @@ function Profile({ navigation, route }) {
         .get()
         .then((querySnapshot) => {
           querySnapshot.forEach((doc) => {
-            const { uid, displayName, postText, image, createdAt, userImage } =
+            const {uid, displayName, postText, image, createdAt, userImage} =
               doc.data();
             list.push({
               uid,
+              id: doc.id,
               displayName,
               postText,
               image,
@@ -181,6 +187,11 @@ function Profile({ navigation, route }) {
     }
   };
 
+  const selectTab = (tabIndex) => {
+    ref.current.animateNextTransition();
+    setIsSelected(tabIndex);
+  };
+
   const getUser = async () => {
     await firestore()
       .collection('users')
@@ -193,8 +204,9 @@ function Profile({ navigation, route }) {
   };
 
   useEffect(() => {
-    console.log(route.params)
+    console.log(route.params);
     let unmounted = false;
+    ref.current.animateNextTransition();
     if (!unmounted) {
       fetchUsersFollowing();
       getUser();
@@ -202,7 +214,7 @@ function Profile({ navigation, route }) {
       fetchUsersFollowers();
       fetchChatUser();
       console.log(followersId);
-      if (followersId[0] === auth().currentUser.uid) {
+      if (followersId === auth().currentUser.uid) {
         setFollowing(true);
       } else {
         setFollowing(false);
@@ -215,15 +227,29 @@ function Profile({ navigation, route }) {
     };
   }, [navigation, loading]);
 
+  let ref = React.createRef();
+
+  const transition = (
+    <Transition.Together>
+      <Transition.In
+        type="slide-right"
+        durationMs={5000}
+        interpolation={'easeInOut'}
+      />
+      <Transition.In type="fade" durationMs={5000} />
+      <Transition.Change />
+    </Transition.Together>
+  );
+
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <View style={{ flexDirection: 'row' }}>
+    <SafeAreaView style={{flex: 1}}>
+      <View style={{flexDirection: 'row'}}>
         <Image
           style={styles.userImg}
           source={{
             uri: userData
               ? userData.userImg ||
-              'https://www.pngkey.com/png/detail/950-9501315_katie-notopoulos-katienotopoulos-i-write-about-tech-user.png'
+                'https://www.pngkey.com/png/detail/950-9501315_katie-notopoulos-katienotopoulos-i-write-about-tech-user.png'
               : 'https://www.pngkey.com/png/detail/950-9501315_katie-notopoulos-katienotopoulos-i-write-about-tech-user.png',
           }}
         />
@@ -251,128 +277,141 @@ function Profile({ navigation, route }) {
       <Text style={styles.aboutUser}>
         {userData ? userData.bio || 'No details added.' : ''}
       </Text>
-
       {route.params ? (
         route.params.uid === auth().currentUser.uid ? (
-          <PhotoGramButton backgroundColor={'#fff'} color={'#000'} fontWeight={'h1'} title={'EDIT'} padding={10} extraStyles={{
-            marginHorizontal: 12
-          }} onPress={() => navigation.navigate('EditScreen')} />
+          <PhotoGramButton
+            backgroundColor={'#fff'}
+            color={'#000'}
+            fontWeight={'h1'}
+            title={'EDIT'}
+            padding={10}
+            extraStyles={{
+              marginHorizontal: 12,
+            }}
+            onPress={() => navigation.navigate('EditScreen')}
+          />
         ) : (
-          <PhotoGramButton title={'Chat'} padding={10} onPress={() => navigation.navigate('ChatRoom', chatUser)} />
+          <PhotoGramButton
+            title={'Chat'}
+            backgroundColor={'#fff'}
+            color={'#000'}
+            fontWeight={'h1'}
+            padding={10}
+            extraStyles={{marginHorizontal: 12, marginVertical: 12}}
+            onPress={() => navigation.navigate('ChatRoom', chatUser)}
+          />
         )
       ) : (
         <>
           <PhotoGramButton
-            title={'EDIT'}
+            title={'Edit Profile'}
             padding={10}
             onPress={() => navigation.navigate('EditScreen')}
             backgroundColor={'#fff'}
             fontWeight={'h1'}
             color={'#000'}
-            extraStyles={{ width: width - 20, alignSelf: 'center' }}
-          />
-          <PhotoGramButton
-            title={'LOGOUT'}
-            onPress={() => auth().signOut()}
-            padding={10}
-            extraStyles={{
-              marginVertical: 24 - 8,
-              width: width - 20,
-              alignSelf: 'center',
-            }}
-            fontWeight={'h1'}
-            backgroundColor={'#fff'}
-            color={'#000'}
+            extraStyles={{width: width - 20, alignSelf: 'center'}}
           />
         </>
       )}
 
-      {/* {route.params ? (
-        route.params.uid === auth().currentUser.uid ? (
-          <>
-            <TouchableOpacity
-              onPress={() => navigation.navigate('EditScreen')}
-              style={styles.userBtn}>
-              <Text>Edit</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => auth().signOut()}
-              style={{
-                borderColor: '#000',
-                borderWidth: 2,
-                borderRadius: 3,
-                paddingVertical: 8,
-                paddingHorizontal: 12,
-                marginHorizontal: 5,
-                marginVertical: 4,
-              }}>
-              <Text>Logout</Text>
-            </TouchableOpacity>
-          </>
-        ) : following === true ? (
-          <TouchableOpacity onPress={() => onUnFollow()} style={styles.userBtn}>
-            <Text>Following</Text>
-          </TouchableOpacity>
-        ) : (
-          <TouchableOpacity onPress={() => onFollow()} style={styles.userBtn}>
-            <Text>follow</Text>
-          </TouchableOpacity>
-        )
-      ) : (
-        <TouchableOpacity
-          onPress={() => navigation.navigate('EditScreen')}
-          style={styles.userBtn}>
-          <Text>Edit</Text>
-        </TouchableOpacity>
-      )}
-
-      {route.params.uid !== auth().currentUser.uid ? (
-        <TouchableOpacity
-          onPress={() => navigation.navigate('ChatRoom', chatUser)}
+      <ScrollView scrollEventThrottle={70}>
+        <Transitioning.View
+          ref={ref}
+          transition={transition}
           style={{
-            borderColor: '#000',
-            borderWidth: 2,
-            borderRadius: 3,
-            paddingVertical: 8,
-            paddingHorizontal: 12,
-            marginHorizontal: 5,
-            marginVertical: 4,
-          }}>
-          <Text>Chat</Text>
-        </TouchableOpacity>
-      ) : (
-        <View />
-      )} */}
-
-      <ScrollView>
-        <Animated.FlatList
-          data={posts}
-          keyExtractor={({ item }) => item}
-          scrollEventThrottle={16}
-          showsVerticalScrollIndicator={false}
-          showsHorizontalScrollIndicator={false}
-          renderItem={({ item, index }) => {
-            const inputRange = [
-              -1,
-              0,
-              (width / 7) * index,
-              (width / 7) * (index + 2),
-            ];
-
-            const scale = scrollY.interpolate({
-              inputRange,
-              outputRange: [1, 1, 1, 0],
-            });
-            return (
-              <PostCard
-                scale={scale}
-                item={item}
-                onDelete={handleDelete}
-                route={navigation}
-              />
-            );
+            marginTop: padding - 12,
+            left: isSelected === 0 ? 0 : null,
+            right: isSelected === 1 ? 0 : null,
+            borderTopLeftRadius: isSelected === 0 ? 70 : null,
+            borderBottomLeftRadius: isSelected === 0 ? 70 : null,
+            borderTopRightRadius: isSelected === 1 ? 70 : null,
+            borderBottomRightRadius: isSelected === 1 ? 70 : null,
+            flex: 1,
+            marginRight: 12,
+            marginLeft: 12,
+            borderBottomColor: '#000',
+            borderBottomWidth: 0.7,
+            alignSelf: 'center',
+            width: width / 2,
+            padding,
+            position: 'absolute',
+          }}></Transitioning.View>
+        <View
+          style={{
+            position: 'absolute',
+            zIndex: 1000,
+            borderTopColor: '#000',
+            borderTopWidth: 0.7,
           }}
         />
+        <View
+          style={{
+            justifyContent: 'center',
+            alignItems: 'center',
+            padding,
+            flexDirection: 'row',
+          }}>
+          <TouchableOpacity
+            activeOpacity={3}
+            style={{flex: 1}}
+            onPress={() => selectTab(0)}>
+            <Tab
+              icon={'md-grid'}
+              isSelected={isSelected === 0 ? true : false}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity
+            activeOpacity={3}
+            style={{flex: 1}}
+            onPress={() => selectTab(1)}>
+            <Tab icon={'people'} isSelected={isSelected === 0 ? false : true} />
+          </TouchableOpacity>
+        </View>
+
+        {isSelected === 0 ? (
+          <FlatList
+            numColumns={3}
+            key={'_'}
+            keyExtractor={(item) => '_' + item.id}
+            data={posts}
+            renderItem={({item}) => {
+              return item.image === null ? (
+                <></>
+              ) : (
+                <TouchableOpacity
+                  activeOpacity={3}
+                  onPress={() =>
+                    navigation.navigate('ImageDetails', {
+                      userData: userData,
+                      item: item,
+                    })
+                  }>
+                  <Image
+                    source={{uri: item.image}}
+                    style={{
+                      alignSelf: 'center',
+                      width: item.image !==null ? width / 3.2 : 0,
+                      height:item.image!==null ? 100 : 0,
+                      margin: 2,
+                    }}
+                  />
+                </TouchableOpacity>
+              );
+            }}
+          />
+        ) : (
+          <PhotogramText
+            text={'This feature is coming soon!'}
+            fontStyle={'italic'}
+            fontSize={18}
+            extraStyles={{
+              justifyContent: 'center',
+              alignSelf: 'center',
+              marginTop: height / 5.5,
+            }}
+            fontWeight={'h1'}></PhotogramText>
+        )}
       </ScrollView>
     </SafeAreaView>
   );

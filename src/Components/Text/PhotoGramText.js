@@ -8,7 +8,8 @@ export function PhotogramText({
   color,
   extraStyles,
   onPress,
-  fontFamily
+  fontFamily,
+  fontStyle
 }) {
   const styles = StyleSheet.create({
     Text: {
@@ -16,6 +17,7 @@ export function PhotogramText({
       fontWeight: fontWeight === 'h1' ? '700' : 'normal',
       color: color || '#000',
       ...extraStyles,
+      fontStyle:fontStyle||'normal',
       fontFamily: fontFamily || 'Roboto-Regular',
     },
   });
