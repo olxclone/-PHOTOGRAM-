@@ -147,7 +147,7 @@ export default function PostScreen({navigation}) {
           }}
         />
         <PhotogramTextInput
-          placeholder={`what's in your mind`}
+          placeholder={"what's in your mind"}
           onChangeText={(val) => setPostText(val)}
           extraStyles={styles.PostInput}
         />

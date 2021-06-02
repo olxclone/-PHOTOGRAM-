@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 
 import {
   View,
@@ -14,12 +14,12 @@ import {
 import auth from '@react-native-firebase/auth';
 import storage from '@react-native-firebase/storage';
 import firestore from '@react-native-firebase/firestore';
-import { padding, width, height } from '../../Utils/constants/styles';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import {padding, width, height} from '../../Utils/constants/styles';
+import {SafeAreaView} from 'react-native-safe-area-context';
 import EditProfileheader from '../../../header';
 import ImagePicker from 'react-native-image-crop-picker';
 
-export default function EditProfile({ navigation }) {
+export default function EditProfile({navigation}) {
   const [imageUri, setImageUri] = useState('');
   const [imageUrl, setImageUrl] = useState('');
   const [bio, setBio] = useState('');
@@ -30,7 +30,7 @@ export default function EditProfile({ navigation }) {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [userData, setUserData] = useState('');
-  const [nickname,setNickName] = useState('')
+  const [nickname, setNickName] = useState('');
 
   const takePhotoFromCamera = () => {
     ImagePicker.openCamera({
@@ -60,8 +60,8 @@ export default function EditProfile({ navigation }) {
 
   useEffect(() => {
     const cleanUp = getUser();
-    let userName = firstName + ' ' + lastName
-    setNickName(userName.replace(/\s/g,''))
+    let userName = firstName + ' ' + lastName;
+    setNickName(userName.replace(/\s/g, ''));
     return () => cleanUp;
   });
 
@@ -84,7 +84,7 @@ export default function EditProfile({ navigation }) {
       .doc(auth().currentUser.uid)
       .update({
         userName: firstName + ' ' + lastName,
-        nickname:nickname,
+        nickname: nickname,
         userImg: imageUrl,
         email: auth().currentUser.email,
         uid: auth().currentUser.uid,
@@ -133,18 +133,18 @@ export default function EditProfile({ navigation }) {
   };
 
   return (
-    <SafeAreaView style={{ backgroundColor: '#fff', flex: 1 }}>
+    <SafeAreaView style={{backgroundColor: '#fff', flex: 1}}>
       <EditProfileheader onUpdate={handleUpdate} navigation={navigation} />
       <KeyboardAvoidingView enabled={true} behavior={'padding'}>
         <TouchableOpacity onPress={() => choosePhotoFromLibrary()}>
-          <View style={{ alignSelf: 'center', marginTop: '7%' }}>
+          <View style={{alignSelf: 'center', marginTop: '7%'}}>
             <Image
               source={{
                 uri: imageUri
                   ? imageUri
                   : userData
-                    ? userData.userImg
-                    : 'https://www.pngkey.com/png/detail/950-9501315_katie-notopoulos-katienotopoulos-i-write-about-tech-user.png',
+                  ? userData.userImg
+                  : 'https://www.pngkey.com/png/detail/950-9501315_katie-notopoulos-katienotopoulos-i-write-about-tech-user.png',
               }}
               style={{
                 width: 105,
@@ -166,9 +166,9 @@ export default function EditProfile({ navigation }) {
           </Text>
         </TouchableOpacity>
         {/* Main */}
-        <View style={{ marginTop: padding + 6 }}>
+        <View style={{marginTop: padding + 6}}>
           <View>
-            <Text style={{ marginLeft: padding - 6 }}>First Name</Text>
+            <Text style={{marginLeft: padding - 6}}>First Name</Text>
             <TextInput
               onChangeText={(val) => setFirstName(val)}
               style={{
@@ -179,8 +179,8 @@ export default function EditProfile({ navigation }) {
               }}
             />
           </View>
-          <View style={{ marginVertical: padding }}>
-            <Text style={{ marginLeft: padding - 6 }}>Last Name</Text>
+          <View style={{marginVertical: padding}}>
+            <Text style={{marginLeft: padding - 6}}>Last Name</Text>
             <TextInput
               onChangeText={(val) => setLastName(val)}
               style={{
@@ -192,8 +192,8 @@ export default function EditProfile({ navigation }) {
             />
           </View>
         </View>
-        <View style={{ marginBottom: padding }}>
-          <Text style={{ marginLeft: padding - 6 }}>website</Text>
+        <View style={{marginBottom: padding}}>
+          <Text style={{marginLeft: padding - 6}}>website</Text>
           <TextInput
             onChangeText={(val) => setWeb(val)}
             style={{
@@ -205,7 +205,7 @@ export default function EditProfile({ navigation }) {
           />
         </View>
         <View>
-          <Text style={{ marginLeft: padding - 6 }}>Bio</Text>
+          <Text style={{marginLeft: padding - 6}}>Bio</Text>
           <TextInput
             onChangeText={(val) => setBio(val)}
             style={{
@@ -231,7 +231,7 @@ export default function EditProfile({ navigation }) {
             alignSelf: 'center',
             marginTop: '50%',
           }}>
-          <Text style={{ fontWeight: '700', fontSize: height / 18 }}>
+          <Text style={{fontWeight: '700', fontSize: height / 18}}>
             Uploading
           </Text>
           <Text

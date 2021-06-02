@@ -25,7 +25,7 @@ export default function signUp({navigation}) {
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const [error, setError] = useState();
-  const [firestoreNickName,setFirestoreNickName] = useState([])
+  const [firestoreNickName, setFirestoreNickName] = useState([]);
   const [userName, setUserName] = useState('');
   const [imageUrl, setImageUrl] = useState();
   const [nickName, setNickName] = useState('');
@@ -35,10 +35,10 @@ export default function signUp({navigation}) {
       await firestore()
         .collection('users')
         .onSnapshot((data) => {
-          data.docs.map(item => {
+          data.docs.map((item) => {
             let nickname = item.data().nickname;
-            setFirestoreNickName(nickname)
-            console.log(nickname)
+            setFirestoreNickName(nickname);
+            console.log(nickname);
             return nickname;
           });
         });
@@ -51,7 +51,7 @@ export default function signUp({navigation}) {
       Alert.alert('Please provide a valid email or password');
     } else {
       if (nickName) {
-        console.log(findUsersWithNicName)
+        console.log(findUsersWithNicName);
       } else {
         auth()
           .createUserWithEmailAndPassword(email, password)
@@ -79,9 +79,9 @@ export default function signUp({navigation}) {
   }
 
   useEffect(() => {
-    let nickname = userName.toLowerCase().replace(/\s/g,'')
+    let nickname = userName.toLowerCase().replace(/\s/g, '');
     setNickName(nickname);
-    console.log(nickname)
+    console.log(nickname);
   });
 
   return (

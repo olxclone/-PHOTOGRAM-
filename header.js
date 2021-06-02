@@ -19,7 +19,7 @@ export default function EditProfileheader({onUpdate, navigation}) {
           fontSize={padding - 3}
           fontWeight={'h1'}
           extraStyles={{
-            left:0,
+            left: 0,
             alignSelf: 'flex-start',
             fontWeight: 'bold',
             fontSize: padding - 3,

@@ -9,7 +9,7 @@ export function PhotoGramButton({
   padding,
   fontSize,
   onPress,
-  fontWeight
+  fontWeight,
 }) {
   const styles = StyleSheet.create({
     Button: {
@@ -22,7 +22,7 @@ export function PhotoGramButton({
     ButtonText: {
       color: color || '#fff',
       fontSize,
-      fontWeight: fontWeight === 'h1' ? "700" : "normal"
+      fontWeight: fontWeight === 'h1' ? '700' : 'normal',
     },
   });
 

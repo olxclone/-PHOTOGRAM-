@@ -24,17 +24,15 @@ export default function ImageDetails({route}) {
           fontWeight={'h1'}
         />
       </View>
+      <PhotogramText text={route.params.item.postText} />
       <PhotogramText
-      text={route.params.item.postText}
-      />
-      <PhotogramText
-      text={new Date(route.params.item.createdAt).toDateString()}
+        text={new Date(route.params.item.createdAt).toDateString()}
       />
       <Image
         resizeMode={'contain'}
         source={{uri: route.params.item.image}}
         style={{
-            position:'absolute',
+          position: 'absolute',
           width: width / 1.1,
           height,
         }}

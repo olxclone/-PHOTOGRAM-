@@ -135,9 +135,8 @@ function Profile({navigation, route}) {
       .doc(auth().currentUser.uid)
       .collection('userFollowing')
       .doc(route.params.uid)
-      .set({}).then(
-        setFollowing(true)
-      )
+      .set({})
+      .then(setFollowing(true));
   };
 
   const onUnFollow = () => {
@@ -146,7 +145,8 @@ function Profile({navigation, route}) {
       .doc(auth().currentUser.uid)
       .collection('userFollowing')
       .doc(route.params.uid)
-      .delete().then(setFollowing(false))
+      .delete()
+      .then(setFollowing(false));
   };
 
   const fetchPosts = async () => {
@@ -212,7 +212,7 @@ function Profile({navigation, route}) {
       fetchPosts();
       fetchUsersFollowers();
       fetchChatUser();
-      console.log(followersId)
+      console.log(followersId);
     }
     navigation.addListener('focus', () => setLoading(!loading));
 
@@ -355,7 +355,8 @@ function Profile({navigation, route}) {
             width: width / 2,
             padding,
             position: 'absolute',
-          }}></Transitioning.View>
+          }}
+        />
         <View
           style={{
             position: 'absolute',
@@ -433,7 +434,8 @@ function Profile({navigation, route}) {
               alignSelf: 'center',
               marginTop: height / 5.5,
             }}
-            fontWeight={'h1'}></PhotogramText>
+            fontWeight={'h1'}
+          />
         )}
       </ScrollView>
     </SafeAreaView>

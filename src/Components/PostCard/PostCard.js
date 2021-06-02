@@ -4,6 +4,7 @@ import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import {padding, width, height} from '../../Utils/constants/styles';
 import {Card} from 'react-native-elements';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {PhotogramText} from '../Text/PhotoGramText';
 
@@ -30,16 +31,30 @@ export default function PostCard({item, navigation, onDelete, scale}) {
 
   const setUpdates = async (postId) => {
     try {
-      const Lists = [];
       await firestore()
         .collection('Posts')
         .doc(postId)
+        .collection('Likes')
+        .doc(auth().currentUser.uid)
         .update({
           likes: firestore.FieldValue.increment(1),
         });
     } catch (e) {
       console.log(e);
     }
+  };
+
+  let onCommentSend = async (postId) => {
+    try {
+      await firestore()
+        .collection('Posts')
+        .doc(postId)
+        .collection('comments')
+        .add({
+          userCommented: auth().currentUser.uid,
+          commentText: text,
+        });
+    } catch (error) {}
   };
 
   let likeIcon = item.liked ? 'like1' : 'like2';
@@ -175,12 +190,16 @@ export default function PostCard({item, navigation, onDelete, scale}) {
                   </Text>
                 </TouchableOpacity>
               </View>
-              <AntDesign
-                // onPress={() => Alert.alert("This will be implemented soon")}
-                name="hearto"
-                style={{marginVertical: padding - 4, marginLeft: 42}}
-                size={32}
+              <MaterialCommunityIcons
+                name="comment-text-outline"
+                size={24}
                 color="black"
+                style={{marginVertical: padding - 4, marginLeft: 42}}
+                onPress={() => {
+                  navigation.navigate('Comments', {
+                    docId: item.id,
+                  });
+                }}
               />
             </>
           )}
