@@ -27,8 +27,6 @@ function Profile({navigation, route}) {
   const [isSelected, setIsSelected] = useState(0);
   const [following, setFollowing] = useState();
   const [userData, setUserData] = useState(null);
-  const [item, setItem] = useState();
-  const [currentTab, setCurrentTab] = useState(0);
   const [chatUser, setChatUser] = useState();
   const [followers, setFollowers] = useState();
   const [followersId, setFollowersId] = useState([]);
@@ -65,7 +63,6 @@ function Profile({navigation, route}) {
   };
 
   const deletePost = (postId) => {
-    console.log(postId);
     firestore()
       .collection('Posts')
       .doc(postId)
@@ -102,7 +99,6 @@ function Profile({navigation, route}) {
   };
 
   const deleteFirestoreData = (postId) => {
-    console.log(postId);
     firestore()
       .collection('posts')
       .doc(postId)
@@ -125,10 +121,11 @@ function Profile({navigation, route}) {
       .collection('userFollowing')
       .onSnapshot((querySnapshot) => {
         let followingData = querySnapshot.docs.map((doc) => {
-          console.log(doc);
+          let id = doc.id;
+          return {id};
         });
         setFollowers(followingData.length);
-        console.log(followingData);
+        setFollowersId(followingData);
       });
   };
 
@@ -138,7 +135,9 @@ function Profile({navigation, route}) {
       .doc(auth().currentUser.uid)
       .collection('userFollowing')
       .doc(route.params.uid)
-      .set({});
+      .set({}).then(
+        setFollowing(true)
+      )
   };
 
   const onUnFollow = () => {
@@ -147,7 +146,7 @@ function Profile({navigation, route}) {
       .doc(auth().currentUser.uid)
       .collection('userFollowing')
       .doc(route.params.uid)
-      .delete();
+      .delete().then(setFollowing(false))
   };
 
   const fetchPosts = async () => {
@@ -205,7 +204,6 @@ function Profile({navigation, route}) {
   };
 
   useEffect(() => {
-    console.log(route.params);
     let unmounted = false;
     ref.current.animateNextTransition();
     if (!unmounted) {
@@ -214,19 +212,14 @@ function Profile({navigation, route}) {
       fetchPosts();
       fetchUsersFollowers();
       fetchChatUser();
-      console.log(followersId);
-      if (followersId === auth().currentUser.uid) {
-        setFollowing(true);
-      } else {
-        setFollowing(false);
-      }
+      console.log(followersId)
     }
     navigation.addListener('focus', () => setLoading(!loading));
 
     return () => {
       unmounted = true;
     };
-  }, [navigation, loading]);
+  }, [navigation, loading, followersId]);
 
   let ref = React.createRef();
 
@@ -292,15 +285,39 @@ function Profile({navigation, route}) {
             onPress={() => navigation.navigate('EditScreen')}
           />
         ) : (
-          <PhotoGramButton
-            title={'Chat'}
-            backgroundColor={'#fff'}
-            color={'#000'}
-            fontWeight={'h1'}
-            padding={10}
-            extraStyles={{marginHorizontal: 12, marginVertical: 12}}
-            onPress={() => navigation.navigate('ChatRoom', chatUser)}
-          />
+          <>
+            {following ? (
+              <PhotoGramButton
+                title={'UNFOLLOW'}
+                backgroundColor={'#fff'}
+                color={'#000'}
+                fontWeight={'h1'}
+                padding={10}
+                extraStyles={{marginHorizontal: 12, marginVertical: 2}}
+                onPress={() => onUnFollow()}
+              />
+            ) : (
+              <PhotoGramButton
+                title={'FOLLOW'}
+                backgroundColor={'#fff'}
+                color={'#000'}
+                fontWeight={'h1'}
+                padding={10}
+                extraStyles={{marginHorizontal: 12, marginVertical: 2}}
+                onPress={() => onFollow()}
+              />
+            )}
+
+            <PhotoGramButton
+              title={'Chat'}
+              backgroundColor={'#fff'}
+              color={'#000'}
+              fontWeight={'h1'}
+              padding={10}
+              extraStyles={{marginHorizontal: 12, marginVertical: 12}}
+              onPress={() => navigation.navigate('ChatRoom', chatUser)}
+            />
+          </>
         )
       ) : (
         <>
@@ -321,7 +338,7 @@ function Profile({navigation, route}) {
           ref={ref}
           transition={transition}
           style={{
-            overflow:'hidden',
+            overflow: 'hidden',
             marginTop: padding - 12,
             left: isSelected === 0 ? 0 : null,
             right: isSelected === 1 ? 0 : null,
@@ -382,7 +399,8 @@ function Profile({navigation, route}) {
                 <PhotogramText
                   text={'No Posts Yet'}
                   fontWeight={'h1'}
-                  fontSize={18} />
+                  fontSize={18}
+                />
               ) : (
                 <TouchableOpacity
                   activeOpacity={3}
