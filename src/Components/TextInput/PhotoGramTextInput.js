@@ -11,7 +11,8 @@ export function PhotogramTextInput({
   fontSize,
   fontFamily,
   marginHorizontal,
-  color
+  color,
+  onChange
 }) {
   const styles = StyleSheet.create({
     textInput: {
@@ -30,6 +31,7 @@ export function PhotogramTextInput({
       <TextInput
       placeholderTextColor={placeholderTextColor}
         placeholder={placeholder}
+        onChange={onChange}
         onChangeText={onChangeText}
         style={styles.textInput}
         secureTextEntry={secureTextEntry}

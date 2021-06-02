@@ -76,19 +76,15 @@ export default function Home({navigation}) {
         _isMounted.current = true;
         if (documentSnapshot.exists) {
           const {image} = documentSnapshot.data();
-
           if (image != null) {
             const storageRef = storage().refFromURL(image);
-            const imageRef = storage().ref(storageRef.fullPath);
-
-            imageRef
+            const imageRef = storage()
+              .ref(storageRef.fullPath)
               .delete()
               .then(() => {
                 deleteFirestoreData(postId);
               })
-              .catch((e) => {
-                console.log('Error while deleting the image. ', e);
-              });
+              .catch((e) => console.log(e));
           } else {
             deleteFirestoreData(postId);
           }
@@ -97,10 +93,12 @@ export default function Home({navigation}) {
   };
 
   const deleteFirestoreData = (postId) => {
+    console.log(postId);
     firestore()
-      .collection('posts')
+      .collection('Posts')
       .doc(postId)
       .delete()
+      .catch((e) => console.log(e))
       .then(() => {
         Alert.alert(
           'Post deleted!',

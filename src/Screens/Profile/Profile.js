@@ -65,6 +65,7 @@ function Profile({navigation, route}) {
   };
 
   const deletePost = (postId) => {
+    console.log(postId);
     firestore()
       .collection('Posts')
       .doc(postId)
@@ -73,11 +74,9 @@ function Profile({navigation, route}) {
         _isMounted.current = true;
         if (documentSnapshot.exists) {
           const {image} = documentSnapshot.data();
-
-          if (image != null) {
+          if (image !== null) {
             const storageRef = storage().refFromURL(image);
             const imageRef = storage().ref(storageRef.fullPath);
-
             imageRef
               .delete()
               .then(() => {
@@ -103,11 +102,13 @@ function Profile({navigation, route}) {
   };
 
   const deleteFirestoreData = (postId) => {
+    console.log(postId);
     firestore()
       .collection('posts')
       .doc(postId)
       .delete()
       .then(() => {
+        console.log(postId);
         Alert.alert(
           'Post deleted!',
           'Your post has been deleted successfully!',
@@ -315,11 +316,12 @@ function Profile({navigation, route}) {
         </>
       )}
 
-      <ScrollView scrollEventThrottle={70}>
+      <ScrollView scrollEventThrottle={70} showsVerticalScrollIndicator={false}>
         <Transitioning.View
           ref={ref}
           transition={transition}
           style={{
+            overflow:'hidden',
             marginTop: padding - 12,
             left: isSelected === 0 ? 0 : null,
             right: isSelected === 1 ? 0 : null,
@@ -376,8 +378,11 @@ function Profile({navigation, route}) {
             keyExtractor={(item) => '_' + item.id}
             data={posts}
             renderItem={({item}) => {
-              return item.image === null ? (
-                <></>
+              return posts.length === 0 ? (
+                <PhotogramText
+                  text={'No Posts Yet'}
+                  fontWeight={'h1'}
+                  fontSize={18} />
               ) : (
                 <TouchableOpacity
                   activeOpacity={3}
@@ -391,8 +396,8 @@ function Profile({navigation, route}) {
                     source={{uri: item.image}}
                     style={{
                       alignSelf: 'center',
-                      width: item.image !==null ? width / 3.2 : 0,
-                      height:item.image!==null ? 100 : 0,
+                      width: item.image !== null ? width / 3.2 : 0,
+                      height: item.image !== null ? height / 6 : 0,
                       margin: 2,
                     }}
                   />

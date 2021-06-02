@@ -20,16 +20,17 @@ import EditProfileheader from '../../../header';
 import ImagePicker from 'react-native-image-crop-picker';
 
 export default function EditProfile({ navigation }) {
-  const [imageUri, setImageUri] = useState();
-  const [imageUrl, setImageUrl] = useState();
-  const [bio, setBio] = useState();
-  const [web, setWeb] = useState();
+  const [imageUri, setImageUri] = useState('');
+  const [imageUrl, setImageUrl] = useState('');
+  const [bio, setBio] = useState('');
+  const [web, setWeb] = useState('');
   const [transferred, setTransferred] = useState(0);
   const [visible, setVisible] = useState(false);
   const [uploading, setUploading] = useState(false);
-  const [firstName, setFirstName] = useState();
-  const [lastName, setLastName] = useState();
-  const [userData, setUserData] = useState();
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [userData, setUserData] = useState('');
+  const [nickname,setNickName] = useState('')
 
   const takePhotoFromCamera = () => {
     ImagePicker.openCamera({
@@ -59,6 +60,8 @@ export default function EditProfile({ navigation }) {
 
   useEffect(() => {
     const cleanUp = getUser();
+    let userName = firstName + ' ' + lastName
+    setNickName(userName.replace(/\s/g,''))
     return () => cleanUp;
   });
 
@@ -81,6 +84,7 @@ export default function EditProfile({ navigation }) {
       .doc(auth().currentUser.uid)
       .update({
         userName: firstName + ' ' + lastName,
+        nickname:nickname,
         userImg: imageUrl,
         email: auth().currentUser.email,
         uid: auth().currentUser.uid,

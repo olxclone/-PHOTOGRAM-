@@ -9,7 +9,12 @@
   "storage": {
     "rules": "storage.rules"
   },
-  "react-native" : {
+  "react-native": {
     "in_app_messaging_auto_collection_enabled": false
+  },
+  "functions": {
+    "predeploy": [
+      "npm --prefix \"$RESOURCE_DIR\" run lint"
+    ]
   }
 }

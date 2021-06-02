@@ -22,93 +22,67 @@ import {Alert} from 'react-native';
 import {PhotogramText} from '../../Components/Text/PhotoGramText';
 
 export default function signUp({navigation}) {
-  const [password, setPassword] = useState();
-  const [email, setEmail] = useState();
+  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
   const [error, setError] = useState();
-  const [userName, setUserName] = useState();
-  const [imageUri, setImageUri] = useState();
+  const [firestoreNickName,setFirestoreNickName] = useState([])
+  const [userName, setUserName] = useState('');
   const [imageUrl, setImageUrl] = useState();
-  const [imageError, setImageError] = useState('');
-  const [transferred, setTransferred] = useState(0);
-  const [visible, setVisible] = useState(false);
-  const [uploading, setUploading] = useState(false);
+  const [nickName, setNickName] = useState('');
 
-  async function PickProfileImage() {
+  async function findUsersWithNicName() {
     try {
-      const res = await DocumentPicker.pick({
-        type: [DocumentPicker.types.images],
-      });
+      await firestore()
+        .collection('users')
+        .onSnapshot((data) => {
+          data.docs.map(item => {
+            let nickname = item.data().nickname;
+            setFirestoreNickName(nickname)
+            console.log(nickname)
+            return nickname;
+          });
+        });
+    } catch (error) {}
+  }
 
-      setImageUri(res.uri);
-      console.log(res.uri, res.type, res.name, res.size);
-    } catch (err) {
-      if (DocumentPicker.isCancel(err)) {
+  async function signUp() {
+    if (email.length < 0 || (email.length < 20 && password.length > 24)) {
+      setError('Please provide a valid email or password');
+      Alert.alert('Please provide a valid email or password');
+    } else {
+      if (nickName) {
+        console.log(findUsersWithNicName)
       } else {
-        throw err;
+        auth()
+          .createUserWithEmailAndPassword(email, password)
+          .then((userCredential) => {
+            userCredential.user.updateProfile({
+              displayName: userName,
+              photoURL: imageUrl,
+            });
+            firestore().collection('users').doc(userCredential.user.uid).set({
+              userName,
+              nickName,
+              userImg: '',
+              email,
+              uid: userCredential.user.uid,
+              createdAt: Date.now(),
+              bio: '',
+              web: '',
+            });
+          })
+          .catch((error) => {
+            Alert.alert(error.message);
+          });
       }
     }
   }
 
-  const uploadImage = async () => {
-    const path = `profile/${Date.now()}/${Date.now()}`;
-    return new Promise(async (resolve, rej) => {
-      const response = await fetch(imageUri);
-      const file = await response.blob();
-      let upload = storage().ref(path).put(file);
-
-      console.log('Post Added');
-      upload.on(
-        'state_changed',
-        (snapshot) => {
-          console.log(
-            `${snapshot.bytesTransferred} transferred out of ${snapshot.totalBytes}`,
-          );
-          setTransferred(
-            Math.round(snapshot.bytesTransferred / snapshot.totalBytes) * 100,
-          );
-
-          setVisible(true);
-        },
-
-        (err) => {
-          rej(err);
-        },
-        async () => {
-          const url = await upload.snapshot.ref.getDownloadURL();
-          console.log(url);
-          setImageUrl(url);
-          resolve(url);
-          setVisible(false);
-          setImageUri(null);
-          setUploading(false);
-        },
-      );
-    });
-  };
-
-  async function signUp() {
-    auth()
-      .createUserWithEmailAndPassword(email, password)
-      .then((userCredential) => {
-        userCredential.user.updateProfile({
-          displayName: userName,
-          photoURL: imageUrl,
-        });
-
-        firestore().collection('users').doc(userCredential.user.uid).set({
-          userName,
-          userImg: '',
-          email,
-          uid: userCredential.user.uid,
-          createdAt: Date.now(),
-          bio: '',
-          web: '',
-        });
-      })
-      .catch((error) => {
-        Alert.alert(error.message);
-      });
-  }
+  useEffect(() => {
+    let nickname = userName.toLowerCase().replace(/\s/g,'')
+    setNickName(nickname);
+    console.log(nickname)
+  });
 
   return (
     <View style={{backgroundColor: '#fff', flex: 1}}>
@@ -127,6 +101,8 @@ export default function signUp({navigation}) {
           <PhotogramTextInput
             padding={10}
             fontSize={padding - 6}
+            onChangeText={(u) => setUserName(u)}
+            onChange={() => findUsersWithNicName()}
             placeholder={'UserName'}
             extraStyles={{
               backgroundColor: '#F6F6F6',

@@ -5,7 +5,7 @@ import firestore from '@react-native-firebase/firestore';
 import {padding, width, height} from '../../Utils/constants/styles';
 import {Card} from 'react-native-elements';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import { PhotogramText } from '../Text/PhotoGramText';
+import {PhotogramText} from '../Text/PhotoGramText';
 
 export default function PostCard({item, navigation, onDelete, scale}) {
   const [userData, setUserData] = useState();
@@ -35,7 +35,7 @@ export default function PostCard({item, navigation, onDelete, scale}) {
         .collection('Posts')
         .doc(postId)
         .update({
-          likes: item.likes + 1,
+          likes: firestore.FieldValue.increment(1),
         });
     } catch (e) {
       console.log(e);
@@ -112,11 +112,10 @@ export default function PostCard({item, navigation, onDelete, scale}) {
           {new Date().toDateString(item.createdAt)}
         </Text>
         <Card.Divider />
-        <PhotogramText 
-            fontSize={padding - 6}
-        text={item.postText}
-        extraStyles={{ marginBottom: 16,
-          marginHorizontal: 24,}}
+        <PhotogramText
+          fontSize={padding - 6}
+          text={item.postText}
+          extraStyles={{marginBottom: 16, marginHorizontal: 24}}
         />
         {/* <Text
           style={{
@@ -155,7 +154,9 @@ export default function PostCard({item, navigation, onDelete, scale}) {
                   top: 0,
                   position: 'absolute',
                 }}>
-                <TouchableOpacity onPress={() => setUpdates(item.id)}>
+                <TouchableOpacity
+                  activeOpacity={0}
+                  onPress={() => setUpdates(item.id)}>
                   <AntDesign
                     name={likeIcon}
                     size={32}
