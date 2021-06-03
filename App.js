@@ -67,6 +67,7 @@ const App = ({navigation}) => {
     }
   };
   useEffect(() => {
+   LogBox.ignoreAllLogs()
     requestUserPermission();
     messaging()
       .hasPermission()

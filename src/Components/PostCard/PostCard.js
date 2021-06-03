@@ -10,6 +10,7 @@ import {PhotogramText} from '../Text/PhotoGramText';
 
 export default function PostCard({item, navigation, onDelete, scale}) {
   const [userData, setUserData] = useState();
+  const [likes, setLikes] = useState();
 
   const getUser = async () => {
     await firestore()
@@ -24,10 +25,22 @@ export default function PostCard({item, navigation, onDelete, scale}) {
 
   useEffect(() => {
     const cleanup = getUser();
+    getLikes();
     return () => {
       cleanup;
     };
   }, []);
+
+  let getLikes = async () => {
+    await firestore()
+      .collection('Posts')
+      .doc(item.id)
+      .collection('Likes')
+      .onSnapshot((data) => {
+        setLikes(data.docs.length)
+        console.log(data.docs.length);
+      });
+  };
 
   const setUpdates = async (postId) => {
     try {
@@ -36,25 +49,12 @@ export default function PostCard({item, navigation, onDelete, scale}) {
         .doc(postId)
         .collection('Likes')
         .doc(auth().currentUser.uid)
-        .update({
+        .set({
           likes: firestore.FieldValue.increment(1),
         });
     } catch (e) {
       console.log(e);
     }
-  };
-
-  let onCommentSend = async (postId) => {
-    try {
-      await firestore()
-        .collection('Posts')
-        .doc(postId)
-        .collection('comments')
-        .add({
-          userCommented: auth().currentUser.uid,
-          commentText: text,
-        });
-    } catch (error) {}
   };
 
   let likeIcon = item.liked ? 'like1' : 'like2';
@@ -152,6 +152,18 @@ export default function PostCard({item, navigation, onDelete, scale}) {
         />
         <View>
           {auth().currentUser.uid === item.uid ? (
+            <View style={{flexDirection:'row',justifyContent:'space-between'}}>
+            <MaterialCommunityIcons
+                name="comment-text-outline"
+                size={32}
+                color="black"
+                style={{marginVertical: padding - 4, marginLeft: 42}}
+                onPress={() => {
+                  navigation.navigate('Comments', {
+                    docId: item.id,
+                  });
+                }}
+              />
             <AntDesign
               name="delete"
               style={{marginBottom: 15, marginTop: 12, marginHorizontal: 24}}
@@ -159,6 +171,7 @@ export default function PostCard({item, navigation, onDelete, scale}) {
               size={32}
               color="black"
             />
+          </View>
           ) : (
             <>
               <View
@@ -186,13 +199,13 @@ export default function PostCard({item, navigation, onDelete, scale}) {
                       right: 24,
                       top: 24,
                     }}>
-                    {item.likes}
+                    {likes}
                   </Text>
                 </TouchableOpacity>
               </View>
               <MaterialCommunityIcons
                 name="comment-text-outline"
-                size={24}
+                size={32}
                 color="black"
                 style={{marginVertical: padding - 4, marginLeft: 42}}
                 onPress={() => {
