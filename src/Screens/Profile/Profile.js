@@ -121,11 +121,14 @@ function Profile({navigation, route}) {
       .collection('userFollowing')
       .onSnapshot((querySnapshot) => {
         let followingData = querySnapshot.docs.map((doc) => {
+          let list = [];
           let id = doc.id;
-          return {id};
+          list.push({
+            id,
+          });
+          setFollowersId(list);
         });
         setFollowers(followingData.length);
-        setFollowersId(followingData);
       });
   };
 
@@ -207,12 +210,13 @@ function Profile({navigation, route}) {
     let unmounted = false;
     ref.current.animateNextTransition();
     if (!unmounted) {
+      console.log(followersId);
       fetchUsersFollowing();
       getUser();
       fetchPosts();
       fetchUsersFollowers();
-      fetchChatUser();
       console.log(followersId);
+      fetchChatUser();
     }
     navigation.addListener('focus', () => setLoading(!loading));
 
@@ -258,7 +262,11 @@ function Profile({navigation, route}) {
           </View>
           <View style={styles.userInfoItem}>
             <TouchableOpacity
-              onPress={() => navigation.navigate('Following', followersId)}>
+              onPress={() =>
+                navigation.navigate('Following', {
+                  id: followersId,
+                })
+              }>
               <Text style={styles.userInfoTitle}>{followers}</Text>
               <Text style={styles.userInfoSubTitle}>Following</Text>
             </TouchableOpacity>

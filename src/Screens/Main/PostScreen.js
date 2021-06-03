@@ -5,7 +5,6 @@ import {
   Image,
   Modal,
   StyleSheet,
-  TextInput,
   TouchableOpacity,
   Dimensions,
 } from 'react-native';
@@ -14,6 +13,7 @@ import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
 import storage from '@react-native-firebase/storage';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import Entypo from 'react-native-vector-icons/Entypo';
 import ImagePicker from 'react-native-image-crop-picker';
 import {PhotogramTextInput} from '../../Components/TextInput/PhotoGramTextInput';
 
@@ -48,6 +48,15 @@ export default function PostScreen({navigation}) {
     };
   }, [navigation, loading]);
 
+  const LauchCamera = () => {
+    ImagePicker.openCamera({
+      width: 500,
+      height: 800,
+      cropping: true,
+      avoidEmptySpaceAroundImage: true,
+    });
+  };
+
   const choosePhotoFromLibrary = () => {
     ImagePicker.openPicker({
       width: 300,
@@ -68,11 +77,7 @@ export default function PostScreen({navigation}) {
       return new Promise(async (resolve, rej) => {
         const response = await fetch(imageUri);
         const file = await response.blob();
-        console.log({file});
-        console.log(imageUri);
         let upload = storage().ref(path).put(file);
-
-        console.log('Post Added');
         upload.on(
           'state_changed',
           (snapshot) => {
@@ -153,6 +158,7 @@ export default function PostScreen({navigation}) {
         />
       </View>
       <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+        <Entypo name="images" size={24} color="black" />
         <TouchableOpacity
           style={{marginHorizontal: 32}}
           onPress={choosePhotoFromLibrary}>

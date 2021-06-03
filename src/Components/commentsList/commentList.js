@@ -24,10 +24,16 @@ export default function CommentList({item, route}) {
 
   return (
     <View>
-        <View style={{borderBottomColor:'#333',borderBottomWidth:0.5}} />
+      <View style={{borderBottomColor: '#333', borderBottomWidth: 0.5}} />
       <View style={{flexDirection: 'row', marginVertical: padding - 10}}>
         <Image
-          style={{width: 50, borderRadius: 55, padding, height: 50,marginLeft:12}}
+          style={{
+            width: 50,
+            borderRadius: 55,
+            padding,
+            height: 50,
+            marginLeft: 12,
+          }}
           source={{
             uri: userData
               ? userData.userImg
@@ -41,8 +47,10 @@ export default function CommentList({item, route}) {
             fontSize={14}
             extraStyles={{marginHorizontal: padding - 10}}
           />
-          <PhotogramText 
-            extraStyles={{marginHorizontal: padding - 10}} text={item.commentText} />
+          <PhotogramText
+            extraStyles={{marginHorizontal: padding - 10}}
+            text={item.commentText}
+          />
         </View>
       </View>
     </View>

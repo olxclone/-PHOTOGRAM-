@@ -20,6 +20,8 @@ import {
 import messaging from '@react-native-firebase/messaging';
 import AsyncStorage from '@react-native-community/async-storage';
 import PushNotifications from 'react-native-push-notification';
+import { enableScreens } from 'react-native-screens'
+enableScreens();
 
 // SCREEN IMPORTS
 import {firebaseConfig} from './src/Utils/firebaseConfig';
@@ -41,9 +43,7 @@ import Comments from './src/Screens/Main/Comments';
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
-const App = ({navigation}) => {
-  console.ignoredYellowBox = true;
-
+const App = async props => {
   const getFcmToken = async () => {
     const fcmToken = await messaging().getToken();
     if (fcmToken) {
@@ -53,7 +53,6 @@ const App = ({navigation}) => {
       console.log('Failed', 'No token received');
     }
   };
-
   const requestUserPermission = async () => {
     const authStatus = await messaging().requestPermission();
     const enabled =

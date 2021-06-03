@@ -11,6 +11,9 @@ import {PhotogramText} from '../Text/PhotoGramText';
 export default function PostCard({item, navigation, onDelete, scale}) {
   const [userData, setUserData] = useState();
   const [likes, setLikes] = useState();
+  const [liked, setLiked] = useState(false);
+  const [likedUsers, setLikedUsers] = useState([]);
+  const [comments, setComments] = useState();
 
   const getUser = async () => {
     await firestore()
@@ -25,20 +28,26 @@ export default function PostCard({item, navigation, onDelete, scale}) {
 
   useEffect(() => {
     const cleanup = getUser();
+    getAllComments();
     getLikes();
     return () => {
       cleanup;
     };
   }, []);
-
   let getLikes = async () => {
     await firestore()
       .collection('Posts')
       .doc(item.id)
       .collection('Likes')
       .onSnapshot((data) => {
-        setLikes(data.docs.length)
-        console.log(data.docs.length);
+        data.docs.map((snap) => {
+          const List = [];
+          List.push({
+            id: snap.id,
+          });
+          setLikedUsers(List);
+        });
+        setLikes(data.docs.length);
       });
   };
 
@@ -57,8 +66,22 @@ export default function PostCard({item, navigation, onDelete, scale}) {
     }
   };
 
-  let likeIcon = item.liked ? 'like1' : 'like2';
-  let likeIconColor = item.liked === true ? '#45A4FF' : '#333';
+  let getAllComments = async () => {
+    await firestore()
+      .collection('Posts')
+      .doc(item.id)
+      .collection('comments')
+      .onSnapshot((data) => {
+        const Allcomments = data.docs.map((doc) => {
+          const id = doc.id;
+          return {id};
+        });
+        setComments(Allcomments.length);
+      });
+  };
+
+  let likeIcon = liked ? 'like1' : 'like2';
+  let likeIconColor = liked === true ? '#45A4FF' : '#333';
 
   let likeText;
   if (item.likes == 1) {
@@ -152,26 +175,35 @@ export default function PostCard({item, navigation, onDelete, scale}) {
         />
         <View>
           {auth().currentUser.uid === item.uid ? (
-            <View style={{flexDirection:'row',justifyContent:'space-between'}}>
-            <MaterialCommunityIcons
-                name="comment-text-outline"
+            <View
+              style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+              <View style={{flexDirection: 'row'}}>
+                <MaterialCommunityIcons
+                  name="comment-text-outline"
+                  size={32}
+                  color="black"
+                  style={{marginVertical: padding - 4, marginLeft: 42}}
+                  onPress={() => {
+                    navigation.navigate('Comments', {
+                      docId: item.id,
+                    });
+                  }}
+                />
+                <PhotogramText
+                  text={comments}
+                  fontWeight={'h1'}
+                  fontSize={22}
+                  extraStyles={{marginTop: padding - 2, marginLeft: 6}}
+                />
+              </View>
+              <AntDesign
+                name="delete"
+                style={{marginBottom: 15, marginTop: 12, marginHorizontal: 24}}
+                onPress={() => onDelete(item.id)}
                 size={32}
                 color="black"
-                style={{marginVertical: padding - 4, marginLeft: 42}}
-                onPress={() => {
-                  navigation.navigate('Comments', {
-                    docId: item.id,
-                  });
-                }}
               />
-            <AntDesign
-              name="delete"
-              style={{marginBottom: 15, marginTop: 12, marginHorizontal: 24}}
-              onPress={() => onDelete(item.id)}
-              size={32}
-              color="black"
-            />
-          </View>
+            </View>
           ) : (
             <>
               <View
@@ -191,29 +223,37 @@ export default function PostCard({item, navigation, onDelete, scale}) {
                     color={likeIconColor}
                     style={{marginHorizontal: 42, marginVertical: padding - 4}}
                   />
-                  <Text
-                    style={{
-                      fontSize: 26,
-                      fontWeight: '700',
+                  <PhotogramText
+                    fontSize={22}
+                    text={likes}
+                    fontWeight={'h1'}
+                    extraStyles={{
                       position: 'absolute',
                       right: 24,
-                      top: 24,
-                    }}>
-                    {likes}
-                  </Text>
+                      top: -42,
+                    }}
+                  />
                 </TouchableOpacity>
               </View>
-              <MaterialCommunityIcons
-                name="comment-text-outline"
-                size={32}
-                color="black"
-                style={{marginVertical: padding - 4, marginLeft: 42}}
-                onPress={() => {
-                  navigation.navigate('Comments', {
-                    docId: item.id,
-                  });
-                }}
-              />
+              <View style={{flexDirection: 'row'}}>
+                <MaterialCommunityIcons
+                  name="comment-text-outline"
+                  size={32}
+                  color="black"
+                  style={{marginVertical: padding - 4, marginLeft: 42}}
+                  onPress={() => {
+                    navigation.navigate('Comments', {
+                      docId: item.id,
+                    });
+                  }}
+                />
+                <PhotogramText
+                  text={comments}
+                  fontWeight={'h1'}
+                  fontSize={22}
+                  extraStyles={{marginTop: padding - 2, marginLeft: 6}}
+                />
+              </View>
             </>
           )}
         </View>
