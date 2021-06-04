@@ -1,7 +1,16 @@
 import React, {useEffect, useState} from 'react';
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
-import {View, FlatList, Image, TextInput, Keyboard} from 'react-native';
+import {
+  View,
+  FlatList,
+  Image,
+  TextInput,
+  Keyboard,
+  Text,
+  TextInputComponent,
+  KeyboardAvoidingView,
+} from 'react-native';
 import {PhotogramTextInput} from '../../Components/TextInput/PhotoGramTextInput';
 import {height, padding, width} from '../../Utils/constants/styles';
 import {PhotoGramButton} from '../../Components/Buttons/PhotoGramButton';
@@ -63,59 +72,33 @@ export default function Comments({route}) {
   };
 
   return (
-    <View>
-      <View
-        style={{
-          flexDirection: 'row',
-          backgroundColor: '#fff',
-          zIndex: 100,
-          top: keyboardShow ? height / 2.6 : height / 1.26,
-        }}>
-        <View
-          style={{
-            position: 'absolute',
-            padding: padding + 4,
-            flexDirection: 'row',
-          }}>
-          <Image
-            source={{
-              uri: user
-                ? user.userImg
-                : 'https://www.pngkey.com/png/detail/950-9501315_katie-notopoulos-katienotopoulos-i-write-about-tech-user.png',
-            }}
-            style={{
-              width: 50,
-              height: 50,
-              borderRadius: 50,
-              marginLeft: padding,
-            }}
-          />
+    <View style={{flex: 1}}>
+      <View>
+        <FlatList
+          showsVerticalScrollIndicator={false}
+          data={comments}
+          renderItem={({item}) => <CommentList item={item} />}
+        />
+      </View>
+      <KeyboardAvoidingView behavior='padding' style={{flex: 1, justifyContent: 'flex-end'}}>
+        <View style={{flexDirection: 'row'}}>
           <TextInput
-            placeholder="Comment ...."
-            placeholderTextColor="#fff"
-            onChangeText={(val) => setCommentText(val)}
+            onChangeText={(text) => setCommentText(text)}
             style={{
               padding: 10,
-              width: width / 1.8,
-              borderRadius: padding,
-              marginHorizontal: padding,
-              backgroundColor: '#9999',
+              width: width - 30,
+              backgroundColor: 'rgba(0,0,0,0.12)',
             }}
           />
           <MaterialCommunityIcons
-            name="send-outline"
-            style={{marginTop: padding - 12}}
-            onPress={() => onSendComment()}
+            onPress={onSendComment}
+            style={{marginTop: 12}}
+            name="send"
             size={24}
             color="black"
           />
         </View>
-      </View>
-      <FlatList
-        showsVerticalScrollIndicator={false}
-        data={comments}
-        renderItem={({item}) => <CommentList item={item} />}
-      />
+      </KeyboardAvoidingView>
     </View>
   );
 }

@@ -40,18 +40,13 @@ export default function CommentList({item, route}) {
               : 'https://www.pngkey.com/png/detail/950-9501315_katie-notopoulos-katienotopoulos-i-write-about-tech-user.png',
           }}
         />
-        <View>
           <PhotogramText
-            text={userData ? userData.userName : 'Test'}
+            text={userData ? '@' + userData.userName : 'Test'}
             fontWeight={'h1'}
             fontSize={14}
-            extraStyles={{marginHorizontal: padding - 10}}
+            extraStyles={{marginLeft: padding - 10}}
           />
-          <PhotogramText
-            extraStyles={{marginHorizontal: padding - 10}}
-            text={item.commentText}
-          />
-        </View>
+          <PhotogramText text={item.commentText} />
       </View>
     </View>
   );

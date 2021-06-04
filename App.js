@@ -43,7 +43,9 @@ import Comments from './src/Screens/Main/Comments';
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
-const App = async props => {
+const App = ({navigation}) => {
+  console.ignoredYellowBox = true;
+
   const getFcmToken = async () => {
     const fcmToken = await messaging().getToken();
     if (fcmToken) {
@@ -53,6 +55,7 @@ const App = async props => {
       console.log('Failed', 'No token received');
     }
   };
+
   const requestUserPermission = async () => {
     const authStatus = await messaging().requestPermission();
     const enabled =

@@ -63,7 +63,7 @@ export default function EditProfile({navigation}) {
     let userName = firstName + ' ' + lastName;
     setNickName(userName.replace(/\s/g, ''));
     return () => cleanUp;
-  });
+  }, []);
 
   const getUser = () => {
     let currentUser = firestore()
@@ -77,14 +77,13 @@ export default function EditProfile({navigation}) {
       }, []);
   };
 
-  const handleUpdate = () => {
-    let image = imageUrl;
+  const handleUpdate = async () => {
     firestore()
       .collection('users')
       .doc(auth().currentUser.uid)
       .update({
         userName: firstName + ' ' + lastName,
-        nickname: nickname,
+        nickname,
         userImg: imageUrl,
         email: auth().currentUser.email,
         uid: auth().currentUser.uid,
@@ -92,7 +91,7 @@ export default function EditProfile({navigation}) {
         bio,
         web,
       })
-      .then(() => alert('updated'));
+      .then(() => Alert.alert('updated'));
   };
 
   const uploadImage = async () => {
@@ -101,7 +100,6 @@ export default function EditProfile({navigation}) {
       const response = await fetch(imageUri);
       const file = await response.blob();
       let upload = storage().ref(path).put(file);
-
       console.log('Post Added');
       upload.on(
         'state_changed',

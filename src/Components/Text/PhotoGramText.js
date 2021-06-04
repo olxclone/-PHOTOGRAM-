@@ -8,6 +8,7 @@ export function PhotogramText({
   color,
   extraStyles,
   onPress,
+  numberOfLines,
   fontFamily,
   fontStyle,
 }) {
@@ -24,7 +25,7 @@ export function PhotogramText({
 
   return (
     <View>
-      <Text onPress={onPress} style={styles.Text}>
+      <Text onPress={onPress} numberOfLines={numberOfLines ? numberOfLines : 1} style={styles.Text}>
         {text}
       </Text>
     </View>

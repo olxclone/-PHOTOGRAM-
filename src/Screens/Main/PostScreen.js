@@ -12,8 +12,8 @@ import {padding, width, height} from '../../Utils/constants/styles';
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
 import storage from '@react-native-firebase/storage';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import Entypo from 'react-native-vector-icons/Entypo';
 import ImagePicker from 'react-native-image-crop-picker';
 import {PhotogramTextInput} from '../../Components/TextInput/PhotoGramTextInput';
 
@@ -48,13 +48,12 @@ export default function PostScreen({navigation}) {
     };
   }, [navigation, loading]);
 
-  const LauchCamera = () => {
+  const LauchCamera = async (props) => {
     ImagePicker.openCamera({
-      width: 500,
-      height: 800,
+      width: 300,
+      height: 400,
       cropping: true,
-      avoidEmptySpaceAroundImage: true,
-    });
+    }).then((image) => setImageUri(image.path));
   };
 
   const choosePhotoFromLibrary = () => {
@@ -158,12 +157,19 @@ export default function PostScreen({navigation}) {
         />
       </View>
       <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-        <Entypo name="images" size={24} color="black" />
+        <View style={{flexDirection:'row'}}>
         <TouchableOpacity
           style={{marginHorizontal: 32}}
-          onPress={choosePhotoFromLibrary}>
+          onPress={LauchCamera}>
           <AntDesign name="camera" size={28} color={'#000'} />
         </TouchableOpacity>
+        <TouchableOpacity
+          
+          onPress={choosePhotoFromLibrary}>
+          <Ionicons name="image" size={28} color={'#000'} />
+        </TouchableOpacity>
+        
+        </View>
         <TouchableOpacity
           style={{alignSelf: 'flex-end'}}
           onPress={handleUpload}>
